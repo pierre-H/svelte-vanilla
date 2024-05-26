@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { Snippet } from 'svelte';
-	import { uniqueId } from '../utils/uniqueId';
+	import { uniqueId } from '../utils/uniqueId.js';
 
 	export type Props = HTMLInputAttributes & {
 		children?: Snippet;
@@ -14,6 +14,8 @@
 		children,
 		id,
 		checked = $bindable(),
+		//@ts-ignore
+		group = $bindable(),
 		value,
 		class: checkboxClass,
 		type,
@@ -24,6 +26,7 @@
 </script>
 
 <label
+	for={id}
 	class:p-checkbox={!type}
 	class:p-checkbox--inline={type === 'inline'}
 	class:p-checkbox--heading={type === 'heading'}
@@ -34,6 +37,7 @@
 		aria-labelledby={labelId}
 		class="p-checkbox__input"
 		bind:checked
+		bind:group
 		{value}
 		{...restProps}
 	/>

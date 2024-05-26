@@ -1,9 +1,5 @@
 <script lang="ts">
-	import { Checkbox } from '$lib';
+	import { Button } from '$lib';
 </script>
 
-<form>
-	<h1>
-		<Checkbox id="coucou" type="heading">Coucou</Checkbox>
-	</h1>
-</form>
+<Button kind="positive" processing>Coucou</Button>

@@ -13,10 +13,11 @@
 	let {
 		children,
 		id,
-		group = $bindable(),
 		value,
 		class: radioClass,
 		type,
+		//@ts-ignore
+		group = $bindable(),
 		...restProps
 	}: Props = $props();
 
@@ -24,6 +25,7 @@
 </script>
 
 <label
+	for={id}
 	class:p-radio={!type}
 	class:p-radio--inline={type === 'inline'}
 	class:p-radio--heading={type === 'heading'}
