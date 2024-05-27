@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { Select } from '$lib';
-
-	let value = $state('');
+	import { PasswordInput } from '$lib';
 </script>
 
-<Select label="Hello world" name="hello" error="A help text" bind:value dense>
-	<option value="world">World</option>
-	<option value="universe">Universe</option>
-	<option value="everything">Everything</option>
-</Select>
+<PasswordInput
+	label="Hello"
+	required
+	error="Le mot de passe est requis."
+	showLabel="Afficher"
+	hideLabel="Masquer"
+/>

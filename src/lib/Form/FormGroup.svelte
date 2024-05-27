@@ -6,6 +6,15 @@
 	export type BaseFormGroupProps<T> = T & {
 		name?: string;
 		label: string | Snippet;
+		labelGroup?: Snippet<
+			[
+				{
+					class?: string;
+					label: BaseFormGroupProps<T>['label'];
+					for: BaseFormGroupProps<T>['name'];
+				}
+			]
+		>;
 		required?: boolean;
 		helpText?: string | Snippet;
 		error?: boolean | null | string | Snippet;
@@ -34,6 +43,7 @@
 		children,
 		class: groupClass,
 		label,
+		labelGroup,
 		error,
 		caution,
 		success,
@@ -79,13 +89,15 @@
 </script>
 
 <div
-	class="p-form-validation {groupClass}"
+	class="p-form-validation {groupClass ?? ''}"
 	class:is-error={isError}
 	class:is-caution={isCaution}
 	class:is-success={isSuccess}
 	{...restProps}
 >
-	{#if label}
+	{#if labelGroup}
+		{@render labelGroup({ label, class: required ? 'is-required' : undefined, for: name })}
+	{:else if label}
 		<label for={name} class:is-required={required}>
 			{#if typeof label === 'string'}
 				{label}

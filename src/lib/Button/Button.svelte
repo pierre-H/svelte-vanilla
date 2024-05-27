@@ -1,4 +1,5 @@
 <script lang="ts" context="module">
+	import type { Snippet } from 'svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	export type Props = HTMLButtonAttributes & {
@@ -6,7 +7,7 @@
 		inline?: boolean;
 		dense?: boolean;
 		small?: boolean;
-		icon?: Snippet;
+		icon?: Snippet | string;
 		iconPosition?: 'left' | 'right';
 		processing?: boolean;
 	};
@@ -33,7 +34,11 @@
 	{#if processing}
 		<i class="p-icon--spinner u-animation--spin is-light"></i>
 	{:else if icon}
-		{@render icon()}
+		{#if typeof icon === 'string'}
+			<i class="p-icon--{icon}"></i>
+		{:else}
+			{@render icon()}
+		{/if}
 	{/if}
 {/snippet}
 
@@ -48,7 +53,8 @@
 	class:is-small={small}
 	class:has-icon={!!icon}
 	class:is-processing={processing}
-	disabled={disabled || process}
+	class={buttonClass}
+	disabled={disabled || processing}
 	type={type ?? 'button'}
 	{...restProps}
 >
