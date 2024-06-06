@@ -6,8 +6,8 @@
 		multiple?: boolean;
 		disabled?: boolean;
 		forceVisible?: boolean;
-		defaultValue?: string | string[];
-		value?: string | string[];
+		defaultValue?: string | string[] | undefined;
+		value?: string | string[] | undefined;
 		onValueChange?: ChangeFn<string | string[] | undefined>;
 		children?: Snippet;
 	};

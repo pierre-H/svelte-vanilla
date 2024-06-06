@@ -70,11 +70,13 @@
 </svelte:element>
 
 <style>
-	.p-chip--information .p-chip__lead + p-chip__value.p-chip__space-after::before,
-	.p-chip--negative .p-chip__lead + p-chip__value.p-chip__space-after::before,
-	.p-chip--caution .p-chip__lead + p-chip__value.p-chip__space-after::before,
-	.p-chip--positive .p-chip__lead + p-chip__value.p-chip__space-after::before,
-	.p-chip .p-chip__lead + p-chip__value.p-chip__space-after::before {
+	:global(
+			.p-chip--information .p-chip__lead + p-chip__value.p-chip__space-after::before,
+			.p-chip--negative .p-chip__lead + p-chip__value.p-chip__space-after::before,
+			.p-chip--caution .p-chip__lead + p-chip__value.p-chip__space-after::before,
+			.p-chip--positive .p-chip__lead + p-chip__value.p-chip__space-after::before,
+			.p-chip .p-chip__lead + p-chip__value.p-chip__space-after::before
+		) {
 		content: ' : ';
 	}
 </style>

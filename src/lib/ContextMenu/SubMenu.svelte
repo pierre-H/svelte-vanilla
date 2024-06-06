@@ -1,0 +1,95 @@
+<script lang="ts" context="module">
+	import { createContextMenu, createSync, melt } from '@melt-ui/svelte';
+	import type { FloatingConfig } from '@melt-ui/svelte/internal/actions';
+	import type { ChangeFn } from '@melt-ui/svelte/internal/helpers';
+	import { getContext, type Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	export type Props = HTMLAttributes<HTMLSpanElement> & {
+		trigger: string | Snippet;
+		positioning?: FloatingConfig;
+		arrowSize?: number;
+		disabled?: boolean;
+		open?: boolean;
+		onOpenChange?: ChangeFn<boolean>;
+	};
+</script>
+
+<script lang="ts">
+	/**
+	 * @see https://github.com/melt-ui/melt-ui/issues/1205
+	 */
+
+	let {
+		trigger,
+		children,
+		class: itemClass,
+		positioning = {
+			placement: 'right-start'
+		},
+		arrowSize,
+		disabled,
+		open = $bindable(false),
+		onOpenChange,
+		...restProps
+	}: Props = $props();
+
+	const contextMenuContext = getContext<{
+		createSubmenu: ReturnType<typeof createContextMenu>['builders']['createSubmenu'];
+	}>('CONTEXT_MENU');
+
+	if (!contextMenuContext?.createSubmenu) {
+		throw new Error('CONTEXT_MENU context not found');
+	}
+
+	const { createSubmenu } = contextMenuContext;
+
+	const {
+		elements: { subMenu, subTrigger },
+		states
+	} = createSubmenu({
+		positioning,
+		arrowSize,
+		disabled,
+		onOpenChange
+	});
+
+	const sync = createSync(states);
+
+	$effect(() => {
+		sync.subOpen(open, (o) => (open = o));
+	});
+</script>
+
+<span class="p-contextual-menu__link {itemClass ?? ''}" {...restProps} use:melt={$subTrigger}>
+	{#if typeof trigger === 'string'}
+		{trigger}
+	{:else}
+		{@render trigger()}
+	{/if}
+</span>
+
+<span class="p-contextual-menu__dropdown" use:melt={$subMenu} aria-hidden={!open}>
+	{#if children}
+		{@render children()}
+	{/if}
+</span>
+
+<style>
+	.p-contextual-menu__link {
+		padding-left: 32px;
+	}
+
+	.p-contextual-menu__dropdown:focus-visible,
+	.p-contextual-menu__link:focus-visible {
+		outline: none;
+	}
+
+	.p-contextual-menu__link[data-disabled] {
+		cursor: not-allowed;
+		opacity: 0.33;
+	}
+	.p-contextual-menu__link[data-disabled]:hover {
+		background: none;
+	}
+</style>
