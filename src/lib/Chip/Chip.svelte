@@ -58,7 +58,7 @@
 		</span>
 	{/if}
 	{#if children}
-		<span class="p-chip__value" class:p-chip__space-after={spaceAfterLead}>
+		<span class="p-chip__value" class:p-chip__space-before={spaceAfterLead}>
 			{@render children()}
 		</span>
 	{/if}
@@ -70,13 +70,7 @@
 </svelte:element>
 
 <style>
-	:global(
-			.p-chip--information .p-chip__lead + p-chip__value.p-chip__space-after::before,
-			.p-chip--negative .p-chip__lead + p-chip__value.p-chip__space-after::before,
-			.p-chip--caution .p-chip__lead + p-chip__value.p-chip__space-after::before,
-			.p-chip--positive .p-chip__lead + p-chip__value.p-chip__space-after::before,
-			.p-chip .p-chip__lead + p-chip__value.p-chip__space-after::before
-		) {
-		content: ' : ';
+	.p-chip__space-before {
+		margin-left: 2px;
 	}
 </style>

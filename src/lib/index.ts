@@ -1,4 +1,5 @@
 export * from './Accordion/index.js';
+export { default as BackToTop } from './BackToTop/BackToTop.svelte';
 export * from './Card/index.js';
 export { default as Chip } from './Chip/Chip.svelte';
 export * from './CodeSnippet/index.js';
@@ -8,3 +9,5 @@ export * from './Breadcrumb/index.js';
 export { default as Button } from './Button/Button.svelte';
 export * from './Form/index.js';
 export { default as Icon } from './Icon/Icon.svelte';
+export { default as Image } from './Image/Image.svelte';
+export { default as Link } from './Link/Link.svelte';
