@@ -11,4 +11,5 @@ export * from './Form/index.js';
 export { default as Icon } from './Icon/Icon.svelte';
 export { default as Image } from './Image/Image.svelte';
 export { default as Link } from './Link/Link.svelte';
+export { default as Modal } from './Modal/Modal.svelte';
 export * from './Tree/index.js';
