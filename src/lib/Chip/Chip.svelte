@@ -17,6 +17,7 @@
 <script lang="ts">
 	let {
 		children,
+		class: chipClass,
 		lead,
 		color,
 		dismiss,
@@ -39,11 +40,7 @@
 
 <svelte:element
 	this={chipType}
-	class:p-chip={!color}
-	class:p-chip--positive={color === 'positive'}
-	class:p-chip--caution={color === 'caution'}
-	class:p-chip--negative={color === 'negative'}
-	class:p-chip--information={color === 'information'}
+	class="p-chip{color ? `--${color}` : ''} {chipClass}"
 	class:is-dense={dense}
 	class:is-inline={inline}
 	{...restProps}
