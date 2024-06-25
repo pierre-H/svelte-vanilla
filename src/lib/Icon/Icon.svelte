@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	export type IconName =
 		| 'plus'
@@ -132,7 +132,7 @@
 		| 'video-play'
 		| 'warning-grey';
 
-	export type Props = HTMLAttributes<HTMLIElement> & {
+	export type Props = HTMLAttributes<HTMLElement> & {
 		name: IconName | string;
 	};
 </script>

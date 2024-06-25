@@ -97,3 +97,8 @@
 @include vf-p-icon-user-group;
 @include vf-p-icon-video-play;
 @include vf-p-icon-warning-grey;
+
+.p-combobox-menu,
+.p-modal {
+	z-index: 300;
+}

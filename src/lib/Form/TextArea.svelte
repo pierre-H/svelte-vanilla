@@ -4,7 +4,7 @@
 	import FormGroup from './FormGroup.svelte';
 
 	export type Props = BaseFormGroupProps<
-		HTMLTextareaAttributes & { groupClass: string; dense?: boolean }
+		HTMLTextareaAttributes & { groupClass?: string; dense?: boolean }
 	>;
 </script>
 
@@ -18,7 +18,7 @@
 		success,
 		helpText,
 		name,
-		id,
+		id = name,
 		required,
 		value = $bindable(),
 		dense,
@@ -26,7 +26,7 @@
 	}: Props = $props();
 </script>
 
-<FormGroup class={groupClass} {label} {error} {caution} {success} {helpText} {name} {id} {required}>
+<FormGroup class={groupClass} {label} {error} {caution} {success} {helpText} for={id} {required}>
 	{#snippet children(prop)}
 		<textarea
 			{...restProps}

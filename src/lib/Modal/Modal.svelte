@@ -22,7 +22,7 @@
 		preventScroll,
 		escapeBehavior,
 		closeOnOutsideClick = true,
-		portal,
+		portal = 'body',
 		forceVisible,
 		openFocus,
 		closeFocus,

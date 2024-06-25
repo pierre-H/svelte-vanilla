@@ -6,7 +6,7 @@
 
 	export type Props = BaseFormGroupProps<
 		HTMLInputAttributes & {
-			groupClass: string;
+			groupClass?: string;
 			dense?: boolean;
 			showLabel?: string;
 			hideLabel?: string;
@@ -24,7 +24,7 @@
 		success,
 		helpText,
 		name,
-		id,
+		id = name,
 		required,
 		dense,
 		showLabel = 'Show',
@@ -40,7 +40,7 @@
 	}
 </script>
 
-<FormGroup class={groupClass} {label} {error} {caution} {success} {helpText} {name} {id} {required}>
+<FormGroup class={groupClass} {label} {error} {caution} {success} {helpText} for={id} {required}>
 	{#snippet children(prop)}
 		<input
 			{...restProps}

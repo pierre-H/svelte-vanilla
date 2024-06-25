@@ -4,7 +4,7 @@
 	import FormGroup from './FormGroup.svelte';
 
 	export type Props = BaseFormGroupProps<
-		HTMLInputAttributes & { groupClass: string; dense?: boolean }
+		HTMLInputAttributes & { groupClass?: string; dense?: boolean }
 	>;
 </script>
 
@@ -18,21 +18,23 @@
 		success,
 		helpText,
 		name,
-		id,
+		id = name,
 		required,
 		dense,
 		value = $bindable(),
+		type = 'text',
 		...restProps
 	}: Props = $props();
 </script>
 
-<FormGroup class={groupClass} {label} {error} {caution} {success} {helpText} {name} {id} {required}>
+<FormGroup class={groupClass} {label} {error} {caution} {success} {helpText} for={id} {required}>
 	{#snippet children(prop)}
 		<input
 			{...restProps}
 			{name}
 			{id}
 			{required}
+			{type}
 			bind:value
 			aria-invalid={prop.invalid}
 			aria-describedby={prop.describedby}

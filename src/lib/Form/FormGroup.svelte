@@ -3,15 +3,15 @@
 	import { uniqueId } from '../utils/uniqueId.js';
 	import type { Snippet } from 'svelte';
 
-	export type BaseFormGroupProps<T> = T & {
-		name?: string;
+	export type BaseFormGroupProps<T> = Omit<T, 'children'> & {
+		for?: string | null;
 		label: string | Snippet;
 		labelGroup?: Snippet<
 			[
 				{
 					class?: string;
 					label: BaseFormGroupProps<T>['label'];
-					for: BaseFormGroupProps<T>['name'];
+					for: BaseFormGroupProps<T>['for'];
 				}
 			]
 		>;
@@ -20,25 +20,30 @@
 		error?: boolean | null | string | Snippet;
 		caution?: boolean | null | string | Snippet;
 		success?: boolean | null | string | Snippet;
+		children?: Snippet;
 	};
 
-	export type Props = BaseFormGroupProps<
-		HTMLAttributes<HTMLDivElement> & {
-			children: Snippet<
-				[
-					{
-						describedby: string | null;
-						invalid: boolean;
-						required: boolean | undefined;
-						validation: boolean;
-					}
-				]
-			>;
-		}
-	>;
+	export type Props = Omit<BaseFormGroupProps<HTMLAttributes<HTMLDivElement>>, 'children'> & {
+		children: Snippet<
+			[
+				{
+					describedby: string | null;
+					invalid: boolean;
+					required: boolean | undefined;
+					validation: boolean;
+				}
+			]
+		>;
+	};
 </script>
 
 <script lang="ts">
+	import { createLabel, melt } from '@melt-ui/svelte';
+
+	const {
+		elements: { root }
+	} = createLabel();
+
 	let {
 		children,
 		class: groupClass,
@@ -48,8 +53,7 @@
 		caution,
 		success,
 		helpText,
-		name,
-		id,
+		for: forName,
 		required,
 		...restProps
 	}: Props = $props();
@@ -73,7 +77,7 @@
 
 	let hasMessage = $derived(!!message);
 
-	let messageId = $derived(`${id ?? uniqueId('input-')}-message`);
+	let messageId = $derived(`${forName ?? uniqueId('form-group-')}-message`);
 
 	$effect(() => {
 		describedby = hasMessage ? messageId : null;
@@ -96,9 +100,9 @@
 	{...restProps}
 >
 	{#if labelGroup}
-		{@render labelGroup({ label, class: required ? 'is-required' : undefined, for: name })}
+		{@render labelGroup({ label, class: required ? 'is-required' : undefined, for: forName })}
 	{:else if label}
-		<label for={name} class:is-required={required}>
+		<label for={forName} class:is-required={required} use:melt={$root}>
 			{#if typeof label === 'string'}
 				{label}
 			{:else}
