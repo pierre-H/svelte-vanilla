@@ -22,7 +22,7 @@
 		disabled,
 		forceVisible,
 		defaultValue,
-		value = $bindable(defaultValue),
+		value = $bindable<string | string[] | undefined>(defaultValue),
 		children,
 		class: accordionClass,
 		onValueChange,
