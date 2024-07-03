@@ -13,4 +13,5 @@ export { default as Image } from './Image/Image.svelte';
 export { default as Link } from './Link/Link.svelte';
 export { default as Modal } from './Modal/Modal.svelte';
 export { default as StatusLabel } from './StatusLabel/StatusLabel.svelte';
+export * from './Tabs/index.js';
 export * from './Tree/index.js';

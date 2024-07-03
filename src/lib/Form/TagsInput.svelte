@@ -86,6 +86,16 @@
 	let tagsWidth = $state<number>(0);
 	let tagsHeight = $state<number>(0);
 	let tagsWrapped = $derived(tagsHeight > 52 || inputWidth - tagsWidth < 100);
+
+	function onHiddenInputChange({ currentTarget: { value } }: { currentTarget: HTMLInputElement }) {
+		tags = value
+			.split(',')
+			.map((v) => ({
+				value: v.trim(),
+				id: uniqueId('tag-')
+			}))
+			.filter((v) => !!v);
+	}
 </script>
 
 <FormGroup class={groupClass} {label} {error} {caution} {success} {helpText} for={id} {required}>
@@ -109,7 +119,6 @@
 			<input
 				{...restProps}
 				{id}
-				{name}
 				type="text"
 				aria-invalid={prop.invalid}
 				aria-describedby={prop.describedby}
@@ -119,6 +128,9 @@
 				use:melt={$input}
 			/>
 		</div>
+		{#if name}
+			<input type="hidden" {name} value={tags.join(',')} onchange={onHiddenInputChange} />
+		{/if}
 	{/snippet}
 </FormGroup>
 
