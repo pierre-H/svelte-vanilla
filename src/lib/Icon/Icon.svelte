@@ -12,7 +12,10 @@
 		| 'help'
 		| 'delete'
 		| 'external-link'
-		| 'chevron'
+		| 'chevron-down'
+		| 'chevron-left'
+		| 'chevron-right'
+		| 'chevron-up'
 		| 'menu'
 		| 'code'
 		| 'copy'
@@ -133,12 +136,16 @@
 		| 'warning-grey';
 
 	export type Props = HTMLAttributes<HTMLElement> & {
-		name: IconName | string;
+		name: IconName | (string & {});
 	};
 </script>
 
 <script lang="ts">
-	let { name, class: iconClass, ...restProps }: Props = $props();
+	let { name, class: iconClass, children, ...restProps }: Props = $props();
 </script>
 
-<i class="p-icon--{name} {iconClass ?? ''}" {...restProps}></i>
+<i class="p-icon--{name} {iconClass ?? ''}" {...restProps}>
+	{#if children}
+		{@render children()}
+	{/if}
+</i>
