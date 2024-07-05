@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	export type Props = HTMLAttributes<HTMLUListElement> & {
+	export type Props = HTMLAttributes<HTMLDivElement> & {
 		fillEmptyItems?: 1 | 2;
 	};
 </script>
