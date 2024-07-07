@@ -15,6 +15,7 @@ export * from './Matrix/index.js';
 export { default as Modal } from './Modal/Modal.svelte';
 export { default as Notification } from './Notification/Notification.svelte';
 export * from './Pagination/index.js';
+export { default as Quote } from './Quote/Quote.svelte';
 export { default as StatusLabel } from './StatusLabel/StatusLabel.svelte';
 export * from './Tabs/index.js';
 export * from './Tree/index.js';
