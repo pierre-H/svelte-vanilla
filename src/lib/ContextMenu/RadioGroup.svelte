@@ -1,14 +1,17 @@
 <script lang="ts" context="module">
-	import { createSync, melt, type createContextMenu } from '@melt-ui/svelte';
-	import type { ChangeFn } from '@melt-ui/svelte/internal/helpers';
-	import { getContext, setContext, type Snippet } from 'svelte';
-	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import {
+		createSync,
+		melt,
+		type createContextMenu,
+		type CreateContextMenuRadioGroupProps
+	} from '@melt-ui/svelte';
+	import { getContext, setContext } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	export type Props = HTMLButtonAttributes & {
-		defaultValue?: string;
-		value?: string | null;
-		onValueChange?: ChangeFn<string | null>;
-	};
+	export type Props = HTMLAttributes<HTMLSpanElement> &
+		Omit<CreateContextMenuRadioGroupProps, 'value'> & {
+			value?: string | null;
+		};
 </script>
 
 <script lang="ts">
@@ -52,7 +55,7 @@
 	});
 </script>
 
-<span class="p-contextual-menu__dropdown" use:melt={$radioGroup} aria-hidden="false">
+<span class="p-contextual-menu__dropdown" use:melt={$radioGroup} aria-hidden="false" {...restProps}>
 	{#if children}
 		{@render children()}
 	{/if}

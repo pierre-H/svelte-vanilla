@@ -2,27 +2,22 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { setContext, type Snippet } from 'svelte';
 
-	export type Props = HTMLAttributes<HTMLElement> & {
-		multiple?: boolean;
-		disabled?: boolean;
-		forceVisible?: boolean;
-		defaultValue?: string | string[] | undefined;
-		value?: string | string[] | undefined;
-		onValueChange?: ChangeFn<string | string[] | undefined>;
-		children?: Snippet;
-	};
+	export type Props = HTMLAttributes<HTMLElement> &
+		Omit<CreateAccordionProps, 'value'> & {
+			value?: string | string[];
+			children?: Snippet;
+		};
 </script>
 
 <script lang="ts">
-	import { createAccordion, createSync, melt } from '@melt-ui/svelte';
-	import type { ChangeFn } from '@melt-ui/svelte/internal/helpers';
+	import { createAccordion, createSync, melt, type CreateAccordionProps } from '@melt-ui/svelte';
 
 	let {
 		multiple,
 		disabled,
 		forceVisible,
 		defaultValue,
-		value = $bindable<string | string[] | undefined>(defaultValue),
+		value = $bindable<string | string[] | undefined>(defaultValue ?? []),
 		children,
 		class: accordionClass,
 		onValueChange,
@@ -51,6 +46,7 @@
 	const sync = createSync(states);
 
 	$effect(() => {
+		//@ts-ignore
 		sync.value(value, (v) => (value = v));
 	});
 </script>

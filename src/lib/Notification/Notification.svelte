@@ -26,6 +26,7 @@
 		borderless,
 		inline,
 		timestamp,
+		dismissible,
 		actions: notificationActions,
 		closeLabel = 'Close',
 		onclose,

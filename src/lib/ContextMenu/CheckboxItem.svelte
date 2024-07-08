@@ -1,17 +1,19 @@
 <script lang="ts" context="module">
-	import { createSync, melt, type createContextMenu } from '@melt-ui/svelte';
-	import type { ChangeFn } from '@melt-ui/svelte/internal/helpers';
+	import {
+		createSync,
+		melt,
+		type createContextMenu,
+		type CreateContextMenuCheckboxItemProps
+	} from '@melt-ui/svelte';
 	import { getContext, type Snippet } from 'svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	export type Props = HTMLButtonAttributes & {
-		disabled?: boolean;
-		defaultChecked?: boolean | 'indeterminate';
-		checked?: boolean | 'indeterminate';
-		onCheckedChange?: ChangeFn<boolean | 'indeterminate'>;
-		checkIcon?: IconName | Snippet;
-		uncheckIcon?: IconName | Snippet;
-	};
+	export type Props = HTMLButtonAttributes &
+		Omit<CreateContextMenuCheckboxItemProps, 'checked'> & {
+			checked?: boolean | 'indeterminate';
+			checkIcon?: IconName | Snippet;
+			uncheckIcon?: IconName | Snippet;
+		};
 </script>
 
 <script lang="ts">

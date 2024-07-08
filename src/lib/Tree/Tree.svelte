@@ -1,16 +1,14 @@
 <script lang="ts" context="module">
-	import { createSync, createTreeView, melt } from '@melt-ui/svelte';
-	import type { ChangeFn } from '@melt-ui/svelte/internal/helpers';
+	import { createSync, createTreeView, melt, type CreateTreeViewProps } from '@melt-ui/svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { TreeItem } from './types.js';
 
-	export type Props = Omit<HTMLAttributes<HTMLUListElement>, 'children'> & {
-		items: TreeItem[];
-		defaultExpanded?: string[];
-		expanded?: string[];
-		onExpandedChange?: ChangeFn<string[]>;
-		children?: Snippet<[TreeItem]>;
-	};
+	export type Props = Omit<HTMLAttributes<HTMLUListElement>, 'children'> &
+		Omit<CreateTreeViewProps, 'expanded'> & {
+			items: TreeItem[];
+			expanded?: string[];
+			children?: Snippet<[TreeItem]>;
+		};
 </script>
 
 <script lang="ts">
@@ -23,6 +21,7 @@
 		expanded = $bindable(defaultExpanded),
 		onExpandedChange,
 		class: treeClass,
+		forceVisible = true,
 		children,
 		...restProps
 	}: Props = $props();
@@ -33,7 +32,8 @@
 		helpers: { isSelected, isExpanded }
 	} = createTreeView({
 		defaultExpanded,
-		onExpandedChange
+		onExpandedChange,
+		forceVisible
 	});
 
 	setContext('TREE', { item, group, isSelected, isExpanded });

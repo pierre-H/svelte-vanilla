@@ -5,26 +5,12 @@
 </script>
 
 <script lang="ts">
-	let {
-		children,
-		class: breadcrumbItemClass,
-		href,
-		hreflang,
-		download,
-		media,
-		ping,
-		rel,
-		target,
-		type,
-		referrerpolicy,
-		onclick,
-		...restProps
-	}: Props = $props();
+	let { children, id, href, class: breadcrumbItemClass, ...restProps }: Props = $props();
 </script>
 
-<li class="p-breadcrumbs__item">
+<li {id} class="p-breadcrumbs__item {breadcrumbItemClass ?? ''}">
 	{#if href}
-		<a {href} {hreflang} {download} {media} {ping} {rel} {target} {type} {referrerpolicy} {onclick}>
+		<a {href} {...restProps}>
 			{#if children}
 				{@render children()}
 			{/if}

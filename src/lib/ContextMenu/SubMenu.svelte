@@ -1,18 +1,18 @@
 <script lang="ts" context="module">
-	import { createContextMenu, createSync, melt } from '@melt-ui/svelte';
-	import type { FloatingConfig } from '@melt-ui/svelte/internal/actions';
-	import type { ChangeFn } from '@melt-ui/svelte/internal/helpers';
+	import {
+		createContextMenu,
+		createSync,
+		melt,
+		type CreateContextSubmenuProps
+	} from '@melt-ui/svelte';
 	import { getContext, type Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	export type Props = HTMLAttributes<HTMLSpanElement> & {
-		trigger: string | Snippet;
-		positioning?: FloatingConfig;
-		arrowSize?: number;
-		disabled?: boolean;
-		open?: boolean;
-		onOpenChange?: ChangeFn<boolean>;
-	};
+	export type Props = HTMLAttributes<HTMLSpanElement> &
+		Omit<CreateContextSubmenuProps, 'open'> & {
+			trigger: string | Snippet;
+			open?: boolean;
+		};
 </script>
 
 <script lang="ts">

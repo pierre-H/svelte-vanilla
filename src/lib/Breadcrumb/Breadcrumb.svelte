@@ -13,7 +13,11 @@
 	}: Props = $props();
 </script>
 
-<nav class="p-breadcrumbs {breadcrumbsClass ?? ''}" aria-label={ariaLabel ?? 'Breadcrumbs'}>
+<nav
+	class="p-breadcrumbs {breadcrumbsClass ?? ''}"
+	aria-label={ariaLabel ?? 'Breadcrumbs'}
+	{...restProps}
+>
 	<ol class="p-breadcrumbs__items">
 		{#if children}
 			{@render children()}

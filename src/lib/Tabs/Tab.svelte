@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import { createTabs, melt } from '@melt-ui/svelte';
+	import { createTabs } from '@melt-ui/svelte';
 	import { getContext, onMount } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
