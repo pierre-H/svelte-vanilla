@@ -34,7 +34,7 @@
 							{#if headerSnippet}
 								{@render headerSnippet({ header })}
 							{:else}
-								{header.}
+								{header.index}
 							{/if}
 						{/if}
 					</th>

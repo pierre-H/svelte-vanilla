@@ -8,7 +8,7 @@
 	};
 </script>
 
-<script>
+<script lang="ts">
 	let { children, class: formClass, type, ...restProps }: Props = $props();
 </script>
 

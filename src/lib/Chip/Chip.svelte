@@ -1,5 +1,4 @@
 <script lang="ts" context="module">
-	import { browser } from '$app/environment';
 	import type { Snippet } from 'svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
@@ -29,7 +28,7 @@
 	}: Props = $props();
 
 	let spaceAfterLead = $derived.by(() => {
-		if (!browser) {
+		if (typeof navigator === 'undefined') {
 			return false;
 		}
 		return navigator.languages.some((language) => language === 'fr' || language.startsWith('fr-'));
