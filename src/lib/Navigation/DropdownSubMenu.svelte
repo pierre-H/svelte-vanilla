@@ -1,18 +1,37 @@
 <script lang="ts" context="module">
-	import { melt, type createDropdownMenu } from '@melt-ui/svelte';
+	import {
+		createSync,
+		melt,
+		type createDropdownMenu,
+		type CreateDropdownSubmenuProps
+	} from '@melt-ui/svelte';
 	import { getContext, type Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	export type Props = HTMLAttributes<HTMLDivElement> & {
-		selected?: boolean;
-		label: string | Snippet;
-	};
+	export type Props = HTMLAttributes<HTMLDivElement> &
+		Omit<CreateDropdownSubmenuProps, 'open' | 'arrowSize'> & {
+			selected?: boolean;
+			label: string | Snippet;
+			open?: boolean;
+		};
 </script>
 
 <script lang="ts">
 	import Icon from '$lib/Icon/Icon.svelte';
 
-	let { selected, label, children, ...restProps }: Props = $props();
+	let {
+		selected,
+		label,
+		children,
+		positioning = {
+			gutter: 0,
+			placement: 'right-start'
+		},
+		onOpenChange,
+		ids,
+		open = $bindable(false),
+		...restProps
+	}: Props = $props();
 
 	const { createSubmenu } = getContext<{
 		createSubmenu: ReturnType<typeof createDropdownMenu>['builders']['createSubmenu'];
@@ -20,13 +39,18 @@
 
 	const {
 		elements: { subMenu, subTrigger },
-		states: { subOpen }
+		states
 	} = createSubmenu({
 		arrowSize: 0,
-		positioning: {
-			gutter: 0,
-			placement: 'right-start'
-		}
+		positioning,
+		onOpenChange,
+		ids
+	});
+
+	const sync = createSync(states);
+
+	$effect(() => {
+		sync.subOpen(open, (o) => (open = o));
 	});
 </script>
 
@@ -46,11 +70,11 @@
 
 		<Icon name="chevron-right" />
 	</div>
-	{#if $subOpen}
+	{#if open}
 		<ul
 			class="p-navigation__dropdown"
 			style="display: block;"
-			aria-hidden={!$subOpen}
+			aria-hidden={!open}
 			use:melt={$subMenu}
 		>
 			{#if children}
