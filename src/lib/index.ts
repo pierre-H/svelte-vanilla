@@ -13,6 +13,7 @@ export { default as Image } from './Image/Image.svelte';
 export { default as Link } from './Link/Link.svelte';
 export * from './Matrix/index.js';
 export { default as Modal } from './Modal/Modal.svelte';
+export * from './Navigation/index.js';
 export { default as Notification } from './Notification/Notification.svelte';
 export * from './Pagination/index.js';
 export { default as Quote } from './Quote/Quote.svelte';

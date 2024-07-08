@@ -27,6 +27,12 @@
 		children,
 		...restProps
 	}: Props = $props();
+
+	let searchElm = $state<HTMLInputElement>();
+
+	function focus() {
+		searchElm?.focus();
+	}
 </script>
 
 <form class="p-search-box {searchBoxClass ?? ''}" {...restProps}>
@@ -41,10 +47,11 @@
 		required
 		{autocomplete}
 		bind:value
+		bind:this={searchElm}
 		{onchange}
 		{onblur}
 	/>
-	<button type="reset" class="p-search-box__reset"
+	<button type="reset" class="p-search-box__reset" onclick={focus}
 		><i class="p-icon--close">
 			<Icon name="close">{closeLabel}</Icon>
 		</i></button
