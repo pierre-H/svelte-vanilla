@@ -12,7 +12,6 @@
 
 <div class="p-status-label{color ? `--${color}` : ''} {statusLabelClass ?? ''}" {...restProps}>
 	{#if children}
-		: ''
 		{@render children()}
 	{/if}
 </div>

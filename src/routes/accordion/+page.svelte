@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Accordion, AccordionItem } from '$lib';
+	import { Accordion, AccordionItem } from '$lib/index.js';
 </script>
 
 <Accordion>
