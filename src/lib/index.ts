@@ -1,4 +1,5 @@
 export * from './Accordion/index.js';
+export * from './Layouts/index.js';
 export { default as BackToTop } from './BackToTop/BackToTop.svelte';
 export * from './Card/index.js';
 export { default as Chip } from './Chip/Chip.svelte';

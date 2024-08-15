@@ -1,6 +1,6 @@
 {
 	"name": "svelte-vanilla",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"license": "MIT",
 	"author": "Pierre-Emmanuel PIRNAY",
 	"repository": "github:pierre-H/svelte-vanilla",
@@ -33,8 +33,6 @@
 		"svelte": "^4.0.0"
 	},
 	"devDependencies": {
-		"@melt-ui/pp": "^0.3.2",
-		"@melt-ui/svelte": "^0.83.0",
 		"@playwright/test": "^1.45.2",
 		"@sveltejs/adapter-auto": "^3.2.2",
 		"@sveltejs/kit": "^2.5.18",
@@ -62,6 +60,8 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"vanilla-framework": "^4.14.0"
+		"vanilla-framework": "^4.14.0",
+		"@melt-ui/pp": "^0.3.2",
+		"@melt-ui/svelte": "^0.83.0"
 	}
 }
