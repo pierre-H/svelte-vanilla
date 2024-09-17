@@ -5,26 +5,38 @@
 	export type Props = HTMLAttributes<HTMLDivElement> & {
 		dark?: boolean;
 		header?: string | Snippet;
+		fixedWidth?: boolean;
+		controls?: Snippet;
 	};
 </script>
 
 <script lang="ts">
-	let { children, class: panelClass, dark, header, ...restProps }: Props = $props();
+	let { children, class: panelClass, dark, header, fixedWidth, controls, ...restProps }: Props = $props();
 </script>
 
 <div class="p-panel {panelClass ?? ''}" class:is-dark={dark} {...restProps}>
-	{#if header}
+	{#if header || controls}
 		<div class="p-panel__header">
 			{#if typeof header === 'string'}
 				<h4 class="p-panel__title">{header}</h4>
-			{:else}
+			{:else if header}
 				{@render header()}
 			{/if}
+			{#if controls}
+				<div class="p-panel__controls">
+					{@render actions()}
+				</div>
 		</div>
 	{/if}
 	{#if children}
 		<div class="p-panel__content">
-			{@render children()}
+			{#if fixedWidth}
+				<div class="u-fixed-width">
+					{@render children()}
+				</div>
+			{:else}
+				{@render children()}
+			{/if}
 		</div>
 	{/if}
 </div>
