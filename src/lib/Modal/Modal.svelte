@@ -8,6 +8,7 @@
 			header?: string | Snippet;
 			children?: Snippet;
 			footer?: Snippet;
+			onClose?: () => void;
 		};
 </script>
 
@@ -29,6 +30,7 @@
 		defaultOpen,
 		open = $bindable(defaultOpen),
 		onOpenChange,
+		onClose,
 		ids,
 		...restProps
 	}: Props = $props();
@@ -52,6 +54,12 @@
 
 	$effect(() => {
 		sync.open(open, (v) => (open = v));
+	});
+
+	$effect(() => {
+		if (!open) {
+			onClose?.();
+		}
 	});
 </script>
 
