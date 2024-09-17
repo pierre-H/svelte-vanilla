@@ -32,14 +32,16 @@
 		use = [],
 		...restProps
 	}: Props = $props();
+
+	let iconDark = $derived(kind === 'negative' || kind === 'positive');
 </script>
 
 {#snippet iconSnippet()}
 	{#if processing}
-		<i class="p-icon--spinner u-animation--spin is-light"></i>
+		<i class="p-icon--spinner u-animation--spin" class:is-dark={iconDark}></i>
 	{:else if icon}
 		{#if typeof icon === 'string'}
-			<i class="p-icon--{icon}"></i>
+			<i class="p-icon--{icon}" class:is-dark={iconDark}></i>
 		{:else}
 			{@render icon()}
 		{/if}
