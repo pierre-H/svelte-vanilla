@@ -24,7 +24,7 @@
 			{/if}
 			{#if controls}
 				<div class="p-panel__controls">
-					{@render actions()}
+					{@render controls()}
 				</div>
 			{/if}
 		</div>
