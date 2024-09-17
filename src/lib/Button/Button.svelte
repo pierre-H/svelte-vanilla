@@ -1,6 +1,8 @@
 <script lang="ts" module>
+	import type { Action } from '@sveltejs/kit';
 	import type { Snippet } from 'svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import { useActions, type ActionArray } from 'svelte-component-actions';
 
 	export type Props = HTMLButtonAttributes & {
 		kind?: 'base' | 'positive' | 'negative' | 'link';
@@ -10,6 +12,7 @@
 		icon?: Snippet | string;
 		iconPosition?: 'left' | 'right';
 		processing?: boolean;
+		use?: ActionArray;
 	};
 </script>
 
@@ -26,6 +29,7 @@
 		iconPosition = 'left',
 		processing,
 		disabled,
+		use = [],
 		...restProps
 	}: Props = $props();
 </script>
@@ -56,6 +60,7 @@
 	class={buttonClass}
 	disabled={disabled || processing}
 	type={type ?? 'button'}
+	use:useActions={use}
 	{...restProps}
 >
 	{#if iconPosition === 'left'}

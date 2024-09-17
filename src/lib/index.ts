@@ -8,6 +8,7 @@ export * from './ContextMenu/index.js';
 export { default as Badge } from './Badge/Badge.svelte';
 export * from './Breadcrumb/index.js';
 export { default as Button } from './Button/Button.svelte';
+export * from './DropdownMenu/index.js';
 export * from './Form/index.js';
 export { default as Icon } from './Icon/Icon.svelte';
 export { default as Image } from './Image/Image.svelte';
