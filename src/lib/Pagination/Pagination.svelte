@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { createPagination, createSync, melt, type CreatePaginationProps } from '@melt-ui/svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 

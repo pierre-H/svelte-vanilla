@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { createTabs } from '@melt-ui/svelte';
 	import { getContext, onMount } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';

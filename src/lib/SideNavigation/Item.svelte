@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { OptionalLink } from '$lib/utils/OptionalLink.js';
 	import type { HTMLAttributes } from 'svelte/elements';
 

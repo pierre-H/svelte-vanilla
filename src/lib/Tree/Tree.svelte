@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { createSync, createTreeView, melt, type CreateTreeViewProps } from '@melt-ui/svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { TreeItem } from './types.js';

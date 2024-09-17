@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { melt, type createContextMenu } from '@melt-ui/svelte';
 	import { getContext, type Snippet } from 'svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';

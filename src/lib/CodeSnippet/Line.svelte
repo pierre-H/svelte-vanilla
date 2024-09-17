@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	export interface Props {
 		children?: import('svelte').Snippet;
 	}

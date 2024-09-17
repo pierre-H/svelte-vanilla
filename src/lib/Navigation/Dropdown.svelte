@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { uniqueId } from '$lib/utils/uniqueId.js';
 	import {
 		createDropdownMenu,

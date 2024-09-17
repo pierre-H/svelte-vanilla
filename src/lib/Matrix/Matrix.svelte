@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export type Props = HTMLAttributes<HTMLDivElement> & {

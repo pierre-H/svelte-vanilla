@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { setContext, type Snippet } from 'svelte';
 

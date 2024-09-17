@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { HTMLSelectAttributes } from 'svelte/elements';
 	import type { BaseFormGroupProps } from './FormGroup.svelte';
 	import FormGroup from './FormGroup.svelte';

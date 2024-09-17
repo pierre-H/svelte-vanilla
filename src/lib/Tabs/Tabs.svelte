@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { createSync, createTabs, melt, type CreateTabsProps } from '@melt-ui/svelte';
 	import { setContext, type Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';

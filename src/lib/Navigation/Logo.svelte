@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { HTMLAnchorAttributes, HTMLImgAttributes } from 'svelte/elements';
 
 	export type Props = HTMLAnchorAttributes & {

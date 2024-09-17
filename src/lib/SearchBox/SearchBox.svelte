@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { HTMLFormAttributes, HTMLInputAttributes } from 'svelte/elements';
 
 	export type Props = HTMLFormAttributes & {

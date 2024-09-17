@@ -1,6 +1,6 @@
 <svelte:options preserveWhitespace={true} />
 
-<script lang="ts" context="module">
+<script lang="ts" module>
 	export type CodeSnippetProps = {
 		bordered?: boolean;
 		header?: string | Snippet<[]>;

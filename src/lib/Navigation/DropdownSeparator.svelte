@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { melt, type createDropdownMenu } from '@melt-ui/svelte';
 	import { getContext } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
