@@ -26,6 +26,7 @@
 				<div class="p-panel__controls">
 					{@render actions()}
 				</div>
+			{/if}
 		</div>
 	{/if}
 	{#if children}
