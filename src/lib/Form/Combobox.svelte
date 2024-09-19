@@ -249,9 +249,17 @@
 
 	let inputElm = $state<HTMLInputElement>();
 
+	let optionSelected = $derived(Array.isArray(selected) ? selected.length > 0 : !!selected);
+
 	$effect(() => {
 		if (inputElm) {
-			inputElm.setCustomValidity(required ? requiredValidationMessage : '');
+			let needsValidation = false;
+
+			if (required && !optionSelected) {
+				needsValidation = true;
+			}
+
+			inputElm.setCustomValidity(needsValidation ? requiredValidationMessage : '');
 		}
 	});
 </script>
