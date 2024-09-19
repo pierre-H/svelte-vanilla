@@ -34,6 +34,7 @@
 		dense?: boolean;
 		items: Array<ComboboxItem<I> | ComboboxItemGroup<I>>;
 		noResult?: string | Snippet;
+		requiredValidationMessage?: string;
 	}
 
 	function normalizeText(text: string): string {
@@ -96,6 +97,7 @@
 		forceVisible = true,
 		highlightOnHover,
 		ids,
+		requiredValidationMessage = 'This field is required.',
 		...restProps
 	}: Props<I, M> = $props();
 
@@ -132,7 +134,19 @@
 
 	$effect(() => {
 		//@ts-ignore
-		sync.selected(selected, (s) => (selected = s));
+		sync.selected(selected, (s) => {
+			const values = s.map(({ value }) => value);
+			const selectedValues = selected.map(({ value }) => value);
+
+			if (
+				values.length === selectedValues.length &&
+				values.every((valueItem) => selectedValues.includes(valueItem))
+			) {
+				return;
+			}
+
+			selected = s;
+		});
 	});
 
 	$effect(() => {
@@ -194,6 +208,8 @@
 	}
 
 	function onChange(item: ComboboxItem<I>, checked: boolean) {
+		console.log('onChange', item, checked);
+
 		if (multiple) {
 			if (!Array.isArray(selected)) {
 				//@ts-ignore
@@ -230,6 +246,14 @@
 			})
 			.flat()
 	);
+
+	let inputElm = $state<HTMLInputElement>();
+
+	$effect(() => {
+		if (inputElm) {
+			inputElm.setCustomValidity(required ? requiredValidationMessage : '');
+		}
+	});
 </script>
 
 {#snippet renderComboboxItem(item: ComboboxItem<I>)}
@@ -266,12 +290,12 @@
 				use:melt={$input}
 				{...restProps}
 				{id}
-				{required}
 				type="text"
 				aria-invalid={prop.invalid}
 				aria-describedby={prop.describedby}
 				class:p-form-validation__input={prop.validation}
 				class:is-dense={dense}
+				bind:this={inputElm}
 			/>
 			<div class="p-combobox-icon">
 				<Icon name="chevron-{open ? 'up' : 'down'}" />
